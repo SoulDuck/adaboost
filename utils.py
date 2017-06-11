@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 debug_flag=True
 def plotROC(predStrength , labels):
     cursor=(1.0,1.0) #initial cursor
@@ -42,3 +43,7 @@ def plotROC(predStrength , labels):
     plt.show()
     print 'The Area Under Curve is :' , ySum*x_step
 
+def show_progress(i,max_iter):
+    msg='\r progress {}/{}'.format(i, max_iter)
+    sys.stdout.write(msg)
+    sys.stdout.flush()

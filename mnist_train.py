@@ -2,6 +2,7 @@ import tensorflow as tf
 from cnn  import convolution2d , max_pool , algorithm , affine
 import data
 import batch
+import utils
 ##########################setting############################
 
 image_height, image_width, image_color_ch, n_classes, train_imgs, train_labs, test_imgs, test_labs = data.mnist_28x28()
@@ -31,14 +32,17 @@ except tf.errors.NotFoundError:
     print 'there was no model'
 ########################training##############################
 max_val = 0
-check_point = 1000
-for step in range(100):
+max_iter=10000
+check_point = 300
+for step in range(max_iter):
+    utils.show_progress(step,max_iter)
     if step % check_point == 0:
         #inspect_cam(sess, cam, top_conv, test_imgs, test_labs, step, 50, x_, y_, y_conv)
         val_acc, val_loss = sess.run([accuracy, cost], feed_dict={x_: test_imgs[:100], y_: test_labs[:100]})
-        print val_acc, val_loss
+        print '\n',val_acc, val_loss
         if val_acc > max_val:
-            saver.save(sess, './cnn_model/best_acc.ckpt')
+
+            #saver.save(sess, './cnn_model/best_acc.ckpt')
             print 'model was saved!'
     batch_xs, batch_ys = batch.next_batch(train_imgs, train_labs, batch_size)
     train_acc, train_loss, _ = sess.run([accuracy, cost, train_op], feed_dict={x_: batch_xs, y_: batch_ys})
