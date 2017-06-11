@@ -1,6 +1,4 @@
 import tensorflow as tf
-from CAM import get_class_map
-from CAM import inspect_cam
 import data
 import random
 import numpy as np
@@ -24,7 +22,7 @@ def max_pool(x , k=3 , s=2 , padding='SAME'):
 
     if __debug__ ==True:
         print 'layer name :'
-        print 'layer shape :',layer.get_shape()
+        print 'layer shape :',x.get_shape()
     return tf.nn.max_pool(x , ksize=[1,k,k,1] , strides=[1,s,s,1] , padding=padding)
 
 
