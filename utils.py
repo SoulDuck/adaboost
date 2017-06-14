@@ -47,3 +47,28 @@ def show_progress(i,max_iter):
     msg='\r progress {}/{}'.format(i, max_iter)
     sys.stdout.write(msg)
     sys.stdout.flush()
+def divide_images_labels_from_batch(images, labels ,batch_size):
+    batch_img_list=[]
+    batch_lab_list = []
+    share=len(labels)/batch_size
+    #print len(images)
+    #print len(labels)
+    #print 'share :',share
+
+    for i in range(share):
+
+        imgs=images[i*batch_size:(i+1)*batch_size]
+        labs=labels[i * batch_size:(i + 1) * batch_size]
+       # print i , len(imgs) , len(labs)
+        batch_img_list.append(imgs)
+        batch_lab_list.append(labs)
+        if i==share-1:
+            imgs = images[(i+1)*batch_size:]
+            labs = labels[(i+1)*batch_size:]
+            #print i+1, len(imgs), len(labs)
+            batch_img_list.append(imgs)
+            batch_lab_list.append(labs)
+    if __debug__==True:
+        print 'the number of lists',len(batch_img_list)
+        print 'the number of labels:',len(labels)
+    return batch_img_list , batch_lab_list

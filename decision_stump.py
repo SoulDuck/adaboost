@@ -51,7 +51,7 @@ def build_stump(inputs , labels , D):
                     print 'predicted Values:',predictedVals.T
                     print 'labels',labels.T
                     print 'error array:',err_np.T
-                    print 'weight Error :', weightedError
+                    print 'weight Error :', weightedError ,np.shape(weightedError)
                     print 'index ', count
                 #print '---------------------------------------------------------'
                 if weightedError < minError:

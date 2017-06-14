@@ -10,7 +10,7 @@ x_ = tf.placeholder(dtype=tf.float32, shape=[None, image_height, image_width, im
 y_ = tf.placeholder(dtype=tf.int32, shape=[None, n_classes], name='y_')
 batch_size=60
 ##########################structure##########################
-layer = convolution2d('conv1', x_, 64)
+layer = convolution2d('conv1',  x_, 64)
 layer = max_pool(layer)
 top_conv = convolution2d('top_conv', x_, 128)
 layer = max_pool(top_conv)
@@ -42,7 +42,7 @@ for step in range(max_iter):
         print '\n',val_acc, val_loss
         if val_acc > max_val:
 
-            #saver.save(sess, './cnn_model/best_acc.ckpt')
+            saver.save(sess, './cnn_model/best_acc.ckpt')
             print 'model was saved!'
     batch_xs, batch_ys = batch.next_batch(train_imgs, train_labs, batch_size)
     train_acc, train_loss, _ = sess.run([accuracy, cost, train_op], feed_dict={x_: batch_xs, y_: batch_ys})

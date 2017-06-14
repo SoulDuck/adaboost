@@ -29,14 +29,14 @@ def train(inputs, labels, iter=40):
             print 'best Stump :',best_stump
             print 'alpha :', alpha
             print '(-1 * alpha) * np.mat(labels) :',(-1 * alpha) * np.mat(labels)
-            print 'D :',D.T
+            print 'D :',D.T, D.shape
             print 'best_clasEst :',best_clasEst.T
             print 'weak class :' , weakClass
             print '-1*alpha*np.map(labels).T :' , -1*alpha*np.mat(labels)
             print 'classEstimate' , best_clasEst.T
             print 'D :' , D.T
             print 'aggClassEst :',aggClassEst.T
-            print 'expon :',expon.T
+            print 'expon :',expon.T ,expon.shape
             print 'aggClassEst : ' , best_clasEst.T
             print 'np.sign(aggClassEst)',np.sign(aggClassEst).T
             print 'label :',labels
